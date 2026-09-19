@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="text-center">
+
+    <h1>
+        Welcome, {{ current_user.name }}!
+    </h1>
+
+    <p class="lead">
+        Welcome to PaddyGuard AI
+    </p>
+
+</div>
+
+
+<div class="row mt-4">
+
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h3>🌾</h3>
+
+                <h5>Paddy Disease Detection</h5>
+
+                <p>
+                    Upload a paddy leaf image
+                    for AI-based diagnosis.
+                </p>
+
+                <button
+                    class="btn btn-success"
+                    disabled
+                >
+                    Coming in Step 4
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h3>🌦️</h3>
+
+                <h5>Weather</h5>
+
+                <p>
+                    Weather information and
+                    crop alerts.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    disabled
+                >
+                    Coming Later
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4 mb-3">
+
+        <div class="card shadow h-100">
+
+            <div class="card-body text-center">
+
+                <h3>📋</h3>
+
+                <h5>Diagnosis History</h5>
+
+                <p>
+                    Your previous AI diagnosis
+                    records will appear here.
+                </p>
+
+                <button
+                    class="btn btn-secondary"
+                    disabled
+                >
+                    Coming Later
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+{% endblock %}
