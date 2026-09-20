@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container py-4">
+
+    <h2 class="dashboard-title">
+        👤 Farmer Profile
+    </h2>
+
+
+    <div class="card shadow-sm mt-4">
+
+        <div class="card-body">
+
+            <form method="POST">
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
+                        value="{{ current_user.name }}"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        class="form-control"
+                        value="{{ current_user.email }}"
+                        readonly
+                    >
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Language
+                    </label>
+
+                    <select
+                        name="language"
+                        class="form-select"
+                    >
+
+                        <option
+                            value="en"
+                            {% if current_user.language == "en" %}
+                            selected
+                            {% endif %}
+                        >
+                            English
+                        </option>
+
+                        <option
+                            value="te"
+                            {% if current_user.language == "te" %}
+                            selected
+                            {% endif %}
+                        >
+                            తెలుగు
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        class="form-control"
+                        value="{{ current_user.location }}"
+                        placeholder="Example: Vijayawada"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-success"
+                >
+                    Save Changes
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

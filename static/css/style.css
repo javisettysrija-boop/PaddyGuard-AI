@@ -1,0 +1,111 @@
+body {
+    background-color: #f5f7f6;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Navbar */
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+
+/* Dashboard heading */
+
+.dashboard-title {
+    font-weight: 700;
+    color: #1b4332;
+}
+
+.dashboard-subtitle {
+    color: #6c757d;
+}
+
+
+/* Cards */
+
+.feature-card {
+    border: none;
+    border-radius: 16px;
+    transition: 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+}
+
+
+/* Feature icons */
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+
+/* Statistics */
+
+.stat-card {
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+/* Upload area */
+
+.upload-area {
+    border: 2px dashed #198754;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+
+/* Weather */
+
+.weather-card {
+    border: none;
+    border-radius: 16px;
+}
+
+
+/* Alerts */
+
+.alert-card {
+    border-radius: 12px;
+    border: none;
+}
+
+
+/* Footer */
+
+.footer {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    color: #6c757d;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .dashboard-title {
+        font-size: 1.7rem;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+    }
+
+}

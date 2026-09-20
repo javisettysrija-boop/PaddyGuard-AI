@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container py-4">
+
+    <h2 class="dashboard-title">
+        🚨 Paddy Crop Alerts
+    </h2>
+
+    <p class="text-muted">
+        Weather-based monitoring alerts for paddy.
+    </p>
+
+
+    {% if alerts %}
+
+        {% for alert in alerts %}
+
+        <div class="alert alert-warning alert-card shadow-sm">
+
+            <h5>
+                🚨 {{ alert.alert_type }}
+            </h5>
+
+            <p class="mb-0">
+                {{ alert.message }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="card shadow-sm mt-4">
+
+            <div class="card-body text-center py-5">
+
+                <div class="feature-icon">
+                    ✅
+                </div>
+
+                <h5>
+                    No alerts available
+                </h5>
+
+                <p class="text-muted">
+
+                    Weather-based alerts will
+                    appear here after the weather
+                    module is connected.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

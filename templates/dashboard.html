@@ -1,0 +1,402 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="container py-4">
+
+
+    <!-- HEADER -->
+
+    <div class="mb-4">
+
+        <h1 class="dashboard-title">
+
+            Welcome, {{ current_user.name }}! 🌾
+
+        </h1>
+
+        <p class="dashboard-subtitle">
+
+            PaddyGuard AI — Your digital assistant
+            for paddy crop monitoring.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- STATISTICS -->
+
+    <div class="row g-3 mb-4">
+
+
+        <div class="col-md-4">
+
+            <div class="card stat-card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Crop
+                    </h6>
+
+                    <div class="stat-number">
+                        🌾 Paddy
+                    </div>
+
+                    <small class="text-muted">
+                        Selected crop
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card stat-card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Location
+                    </h6>
+
+                    <div class="stat-number">
+
+                        📍
+
+                        {{ current_user.location
+                           or "Not set" }}
+
+                    </div>
+
+                    <small class="text-muted">
+                        Farmer location
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <div class="card stat-card shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Language
+                    </h6>
+
+                    <div class="stat-number">
+
+                        {% if current_user.language == "te" %}
+
+                            తెలుగు
+
+                        {% else %}
+
+                            English
+
+                        {% endif %}
+
+                    </div>
+
+                    <small class="text-muted">
+                        Selected language
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAIN FEATURES -->
+
+    <h3 class="mb-3">
+        PaddyGuard AI Services
+    </h3>
+
+
+    <div class="row g-4">
+
+
+        <!-- DISEASE DETECTION -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card feature-card shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="feature-icon">
+                        🔬
+                    </div>
+
+                    <h5>
+                        Paddy Disease Detection
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Upload a paddy leaf image
+                        and use AI to identify
+                        possible diseases.
+
+                    </p>
+
+                    <a
+                        href="#"
+                        class="btn btn-success"
+                    >
+                        Upload Leaf
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HISTORY -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card feature-card shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="feature-icon">
+                        📋
+                    </div>
+
+                    <h5>
+                        Diagnosis History
+                    </h5>
+
+                    <p class="text-muted">
+
+                        View previous paddy
+                        disease diagnosis
+                        records.
+
+                    </p>
+
+                    <a
+                        href="#"
+                        class="btn btn-primary"
+                    >
+                        View History
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WEATHER -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card feature-card shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="feature-icon">
+                        🌦️
+                    </div>
+
+                    <h5>
+                        Weather Information
+                    </h5>
+
+                    <p class="text-muted">
+
+                        View weather information
+                        for your selected location.
+
+                    </p>
+
+                    <a
+                        href="#"
+                        class="btn btn-info text-white"
+                    >
+                        View Weather
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ALERTS -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card feature-card shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="feature-icon">
+                        🚨
+                    </div>
+
+                    <h5>
+                        Paddy Crop Alerts
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Receive weather-based
+                        crop monitoring alerts.
+
+                    </p>
+
+                    <a
+                        href="#"
+                        class="btn btn-warning"
+                    >
+                        View Alerts
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROFILE -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card feature-card shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="feature-icon">
+                        👤
+                    </div>
+
+                    <h5>
+                        Farmer Profile
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Manage your name,
+                        language and location.
+
+                    </p>
+
+                    <a
+                        href="#"
+                        class="btn btn-secondary"
+                    >
+                        My Profile
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LANGUAGE -->
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card feature-card shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="feature-icon">
+                        🌐
+                    </div>
+
+                    <h5>
+                        Multilingual Support
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Use PaddyGuard AI in
+                        your preferred language.
+
+                    </p>
+
+                    <button
+                        class="btn btn-dark"
+                        disabled
+                    >
+                        English / తెలుగు
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- INFORMATION SECTION -->
+
+    <div class="card shadow-sm border-0 mt-5">
+
+        <div class="card-body">
+
+            <h4>
+                🌾 About PaddyGuard AI
+            </h4>
+
+            <p class="text-muted mb-0">
+
+                PaddyGuard AI is designed to support
+                paddy farmers through AI-based leaf
+                disease detection, weather information,
+                crop alerts and diagnosis history.
+
+                The system is intended as a
+                decision-support tool and does not
+                replace agricultural experts.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container py-4">
+
+    <h2 class="dashboard-title">
+        🌦️ Weather Information
+    </h2>
+
+    <p class="text-muted">
+        Weather information for your selected location.
+    </p>
+
+
+    {% if error %}
+
+        <div class="alert alert-warning">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    {% if weather %}
+
+        <div class="card weather-card shadow-sm mt-4">
+
+            <div class="card-body">
+
+                <h3>
+                    📍 {{ weather.city }}
+                </h3>
+
+                <hr>
+
+
+                <div class="row text-center">
+
+                    <div class="col-md-3">
+
+                        <h4>
+                            🌡️
+                        </h4>
+
+                        <h5>
+                            {{ weather.temperature }} °C
+                        </h5>
+
+                        <small>
+                            Temperature
+                        </small>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <h4>
+                            💧
+                        </h4>
+
+                        <h5>
+                            {{ weather.humidity }}%
+                        </h5>
+
+                        <small>
+                            Humidity
+                        </small>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <h4>
+                            💨
+                        </h4>
+
+                        <h5>
+                            {{ weather.wind }}
+                        </h5>
+
+                        <small>
+                            Wind speed
+                        </small>
+
+                    </div>
+
+
+                    <div class="col-md-3">
+
+                        <h4>
+                            🌧️
+                        </h4>
+
+                        <h5>
+                            {{ weather.rain_3h }}
+                        </h5>
+
+                        <small>
+                            Rain
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <hr>
+
+                <p class="mb-0">
+
+                    <strong>
+                        Condition:
+                    </strong>
+
+                    {{ weather.description }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <div class="card shadow-sm mt-4">
+
+            <div class="card-body text-center py-5">
+
+                <div class="feature-icon">
+                    🌦️
+                </div>
+
+                <h5>
+                    Weather information
+                </h5>
+
+                <p class="text-muted">
+
+                    Weather information will appear
+                    after the weather service is connected.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
