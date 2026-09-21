@@ -1,156 +1,132 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PaddyGuard AI - Weather</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        🌾 PaddyGuard AI
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/">
+            Predict
+        </a>
+
+        <a href="/history">
+            History
+        </a>
+
+        <a href="/alerts">
+            Alerts
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
 
 
-{% block content %}
+<main class="dashboard">
 
-<div class="container py-4">
+    <div class="welcome">
 
-    <h2 class="dashboard-title">
-        🌦️ Weather Information
-    </h2>
+        <h1>
+            🌦 Paddy Weather
+        </h1>
 
-    <p class="text-muted">
-        Weather information for your selected location.
-    </p>
+        <p>
+            Weather information for crop monitoring.
+        </p>
 
-
-    {% if error %}
-
-        <div class="alert alert-warning">
-            {{ error }}
-        </div>
-
-    {% endif %}
+    </div>
 
 
-    {% if weather %}
-
-        <div class="card weather-card shadow-sm mt-4">
-
-            <div class="card-body">
-
-                <h3>
-                    📍 {{ weather.city }}
-                </h3>
-
-                <hr>
+    <div class="dashboard-grid">
 
 
-                <div class="row text-center">
+        <div class="dashboard-card">
 
-                    <div class="col-md-3">
-
-                        <h4>
-                            🌡️
-                        </h4>
-
-                        <h5>
-                            {{ weather.temperature }} °C
-                        </h5>
-
-                        <small>
-                            Temperature
-                        </small>
-
-                    </div>
-
-
-                    <div class="col-md-3">
-
-                        <h4>
-                            💧
-                        </h4>
-
-                        <h5>
-                            {{ weather.humidity }}%
-                        </h5>
-
-                        <small>
-                            Humidity
-                        </small>
-
-                    </div>
-
-
-                    <div class="col-md-3">
-
-                        <h4>
-                            💨
-                        </h4>
-
-                        <h5>
-                            {{ weather.wind }}
-                        </h5>
-
-                        <small>
-                            Wind speed
-                        </small>
-
-                    </div>
-
-
-                    <div class="col-md-3">
-
-                        <h4>
-                            🌧️
-                        </h4>
-
-                        <h5>
-                            {{ weather.rain_3h }}
-                        </h5>
-
-                        <small>
-                            Rain
-                        </small>
-
-                    </div>
-
-                </div>
-
-
-                <hr>
-
-                <p class="mb-0">
-
-                    <strong>
-                        Condition:
-                    </strong>
-
-                    {{ weather.description }}
-
-                </p>
-
+            <div class="card-icon">
+                🌡️
             </div>
 
+            <h2>
+                Temperature
+            </h2>
+
+            <p>
+                {{ temperature or "Not available" }}
+            </p>
+
         </div>
 
-    {% else %}
 
-        <div class="card shadow-sm mt-4">
+        <div class="dashboard-card">
 
-            <div class="card-body text-center py-5">
-
-                <div class="feature-icon">
-                    🌦️
-                </div>
-
-                <h5>
-                    Weather information
-                </h5>
-
-                <p class="text-muted">
-
-                    Weather information will appear
-                    after the weather service is connected.
-
-                </p>
-
+            <div class="card-icon">
+                💧
             </div>
 
+            <h2>
+                Humidity
+            </h2>
+
+            <p>
+                {{ humidity or "Not available" }}
+            </p>
+
         </div>
 
-    {% endif %}
 
-</div>
+        <div class="dashboard-card">
 
-{% endblock %}
+            <div class="card-icon">
+                🌧️
+            </div>
+
+            <h2>
+                Rainfall
+            </h2>
+
+            <p>
+                {{ rainfall or "Not available" }}
+            </p>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

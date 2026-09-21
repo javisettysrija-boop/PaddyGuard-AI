@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>PaddyGuard AI - Alerts</title>
+    <title>Paddy Diseases</title>
 
     <link
         rel="stylesheet"
@@ -37,8 +37,8 @@
             Predict
         </a>
 
-        <a href="/weather">
-            Weather
+        <a href="/history">
+            History
         </a>
 
         <a href="/logout">
@@ -55,49 +55,55 @@
     <div class="welcome">
 
         <h1>
-            🚨 Crop Alerts
+            Paddy Disease Information
         </h1>
 
         <p>
-            Important alerts for your paddy crop.
+            Learn about common paddy diseases.
         </p>
 
     </div>
 
 
-    {% if alerts %}
+    <div class="dashboard-grid">
 
-        {% for alert in alerts %}
+        {% for disease in diseases %}
 
-        <div class="alert-card">
+        <div class="dashboard-card">
+
+            <div class="card-icon">
+                🌿
+            </div>
 
             <h2>
-                ⚠️ Crop Alert
+                {{ disease.name }}
             </h2>
 
             <p>
-                {{ alert }}
+                <strong>Symptoms:</strong><br>
+                {{ disease.symptoms }}
+            </p>
+
+            <p>
+                <strong>Cause:</strong><br>
+                {{ disease.cause }}
+            </p>
+
+            <p>
+                <strong>Prevention:</strong><br>
+                {{ disease.prevention }}
+            </p>
+
+            <p>
+                <strong>Management:</strong><br>
+                {{ disease.treatment }}
             </p>
 
         </div>
 
         {% endfor %}
 
-    {% else %}
-
-        <div class="dashboard-card">
-
-            <h2>
-                No current alerts
-            </h2>
-
-            <p>
-                No crop alerts are currently available.
-            </p>
-
-        </div>
-
-    {% endif %}
+    </div>
 
 </main>
 

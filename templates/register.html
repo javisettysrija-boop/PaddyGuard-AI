@@ -1,137 +1,87 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block content %}
+    <meta charset="UTF-8">
 
-<div class="row justify-content-center">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <div class="col-md-6">
+    <title>PaddyGuard AI - Register</title>
 
-        <div class="card shadow">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 
-            <div class="card-body">
+</head>
 
-                <h2 class="text-center">
-                    Create Account
-                </h2>
+<body>
 
-                <form method="POST">
+<div class="auth-container">
 
+    <div class="auth-box">
 
-                    <div class="mb-3">
+        <h1>🌾 PaddyGuard AI</h1>
 
-                        <label class="form-label">
-                            Name
-                        </label>
+        <h2>Create Account</h2>
 
-                        <input
-                            type="text"
-                            name="name"
-                            class="form-control"
-                            required
-                        >
+        <form
+            action="/register"
+            method="POST"
+        >
 
-                    </div>
+            <label>
+                Name
+            </label>
 
+            <input
+                type="text"
+                name="name"
+                required
+            >
 
-                    <div class="mb-3">
+            <label>
+                Email
+            </label>
 
-                        <label class="form-label">
-                            Email
-                        </label>
+            <input
+                type="email"
+                name="email"
+                required
+            >
 
-                        <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            required
-                        >
+            <label>
+                Password
+            </label>
 
-                    </div>
+            <input
+                type="password"
+                name="password"
+                minlength="6"
+                required
+            >
 
+            <button type="submit">
+                Register
+            </button>
 
-                    <div class="mb-3">
+        </form>
 
-                        <label class="form-label">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            name="password"
-                            class="form-control"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Language
-                        </label>
-
-                        <select
-                            name="language"
-                            class="form-select"
-                        >
-
-                            <option value="en">
-                                English
-                            </option>
-
-                            <option value="te">
-                                Telugu
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Location
-                        </label>
-
-                        <input
-                            type="text"
-                            name="location"
-                            class="form-control"
-                            placeholder="Example: Vijayawada"
-                        >
-
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn-success w-100"
-                    >
-                        Register
-                    </button>
-
-                </form>
-
-
-                <p class="text-center mt-3">
-
-                    Already have an account?
-
-                    <a href="{{ url_for('login') }}">
-                        Login
-                    </a>
-
-                </p>
-
-            </div>
-
-        </div>
+        <p>
+            Already have an account?
+            <a href="/login">
+                Login
+            </a>
+        </p>
 
     </div>
 
 </div>
 
-{% endblock %}
+</body>
+
+</html>

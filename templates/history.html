@@ -1,98 +1,113 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Prediction History</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="logo">
+        🌾 PaddyGuard AI
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/">
+            Predict
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
 
 
-{% block content %}
+<main class="dashboard">
 
-<div class="container py-4">
+    <div class="welcome">
 
-    <h2 class="dashboard-title">
-        📋 Diagnosis History
-    </h2>
+        <h1>
+            Prediction History
+        </h1>
 
-    <p class="text-muted">
-        Your previous paddy disease diagnosis records.
-    </p>
-
-
-    <div class="card shadow-sm mt-4">
-
-        <div class="card-body">
-
-            {% if diagnoses %}
-
-                <div class="table-responsive">
-
-                    <table class="table table-striped">
-
-                        <thead>
-
-                            <tr>
-
-                                <th>Date</th>
-
-                                <th>Disease</th>
-
-                                <th>Confidence</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            {% for diagnosis in diagnoses %}
-
-                            <tr>
-
-                                <td>
-                                    {{ diagnosis.created_at }}
-                                </td>
-
-                                <td>
-                                    {{ diagnosis.disease }}
-                                </td>
-
-                                <td>
-                                    {{ "%.2f"|format(
-                                        diagnosis.confidence
-                                    ) }}%
-                                </td>
-
-                            </tr>
-
-                            {% endfor %}
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            {% else %}
-
-                <div class="text-center py-5">
-
-                    <div class="feature-icon">
-                        📋
-                    </div>
-
-                    <h5>
-                        No diagnosis records yet
-                    </h5>
-
-                    <p class="text-muted">
-                        Your AI diagnosis history
-                        will appear here.
-                    </p>
-
-                </div>
-
-            {% endif %}
-
-        </div>
+        <p>
+            Your previous paddy disease predictions.
+        </p>
 
     </div>
 
-</div>
 
-{% endblock %}
+    <div class="history-container">
+
+        {% if history %}
+
+            {% for item in history %}
+
+            <div class="history-card">
+
+                <h2>
+                    {{ item[0] }}
+                </h2>
+
+                <p>
+                    Confidence:
+                    {{ item[1] }}%
+                </p>
+
+                <p>
+                    Date:
+                    {{ item[2] }}
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="dashboard-card">
+
+                <h2>
+                    No prediction history
+                </h2>
+
+                <p>
+                    Upload a paddy leaf image
+                    to make your first prediction.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

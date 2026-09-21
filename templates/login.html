@@ -1,85 +1,76 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-{% block content %}
+    <meta charset="UTF-8">
 
-<div class="row justify-content-center">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <div class="col-md-6">
+    <title>PaddyGuard AI - Login</title>
 
-        <div class="card shadow">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 
-            <div class="card-body">
+</head>
 
-                <h2 class="text-center mb-4">
-                    🌾 PaddyGuard AI
-                </h2>
+<body>
 
-                <h4 class="text-center">
-                    Login
-                </h4>
+<div class="auth-container">
 
+    <div class="auth-box">
 
-                <form method="POST">
+        <h1>🌾 PaddyGuard AI</h1>
 
-                    <div class="mb-3">
+        <h2>Login</h2>
 
-                        <label class="form-label">
-                            Email
-                        </label>
+        <form
+            action="/login"
+            method="POST"
+        >
 
-                        <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            required
-                        >
+            <label>
+                Email
+            </label>
 
-                    </div>
+            <input
+                type="email"
+                name="email"
+                required
+            >
 
+            <label>
+                Password
+            </label>
 
-                    <div class="mb-3">
+            <input
+                type="password"
+                name="password"
+                required
+            >
 
-                        <label class="form-label">
-                            Password
-                        </label>
+            <button type="submit">
+                Login
+            </button>
 
-                        <input
-                            type="password"
-                            name="password"
-                            class="form-control"
-                            required
-                        >
+        </form>
 
-                    </div>
-
-
-                    <button
-                        type="submit"
-                        class="btn btn-success w-100"
-                    >
-                        Login
-                    </button>
-
-                </form>
-
-
-                <p class="text-center mt-3">
-
-                    Don't have an account?
-
-                    <a href="{{ url_for('register') }}">
-                        Register
-                    </a>
-
-                </p>
-
-            </div>
-
-        </div>
+        <p>
+            Don't have an account?
+            <a href="/register">
+                Register
+            </a>
+        </p>
 
     </div>
 
 </div>
 
-{% endblock %}
+</body>
+
+</html>

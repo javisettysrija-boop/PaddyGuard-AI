@@ -1,111 +1,367 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #f5f7f6;
-    font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8f4;
+    color: #222;
 }
 
 
-/* Navbar */
+/* =========================
+   TOP NAVIGATION
+========================= */
 
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.3rem;
+.topbar {
+    background: #2e7d32;
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 40px;
+
+    flex-wrap: wrap;
 }
 
-
-/* Dashboard heading */
-
-.dashboard-title {
-    font-weight: 700;
-    color: #1b4332;
-}
-
-.dashboard-subtitle {
-    color: #6c757d;
-}
-
-
-/* Cards */
-
-.feature-card {
-    border: none;
-    border-radius: 16px;
-    transition: 0.2s;
-}
-
-.feature-card:hover {
-    transform: translateY(-4px);
-}
-
-
-/* Feature icons */
-
-.feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-
-/* Statistics */
-
-.stat-card {
-    border: none;
-    border-radius: 15px;
-    padding: 20px;
-}
-
-.stat-number {
-    font-size: 2rem;
+.logo {
+    font-size: 24px;
     font-weight: bold;
 }
 
+.topbar nav {
+    display: flex;
 
-/* Upload area */
+    gap: 18px;
 
-.upload-area {
-    border: 2px dashed #198754;
+    flex-wrap: wrap;
+}
+
+.topbar nav a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+.topbar nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 40px 20px;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome {
+    background: white;
+
+    padding: 30px;
+
     border-radius: 15px;
-    padding: 40px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.welcome h1 {
+    margin-top: 0;
+
+    color: #2e7d32;
+}
+
+.welcome p {
+    color: #555;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.dashboard-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+
+.dashboard-card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    color: #222;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.dashboard-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+.card-icon {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+
+.dashboard-card h2 {
+
+    color: #2e7d32;
+
+    margin-top: 0;
+}
+
+
+.dashboard-card p {
+
+    color: #666;
+
+    line-height: 1.6;
+}
+
+
+.dashboard-card span {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #2e7d32;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
     text-align: center;
-    background-color: #ffffff;
-}
 
-
-/* Weather */
-
-.weather-card {
-    border: none;
-    border-radius: 16px;
-}
-
-
-/* Alerts */
-
-.alert-card {
-    border-radius: 12px;
-    border: none;
-}
-
-
-/* Footer */
-
-.footer {
-    margin-top: 50px;
     padding: 20px;
-    text-align: center;
-    color: #6c757d;
+
+    color: #666;
 }
 
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 768px) {
 
-    .dashboard-title {
-        font-size: 1.7rem;
+    .topbar {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        padding: 20px;
     }
 
-    .feature-icon {
-        font-size: 2rem;
+    .topbar nav {
+
+        flex-direction: column;
+
+        gap: 10px;
     }
 
+    .dashboard {
+
+        padding: 25px 15px;
+    }
+
+    .welcome {
+
+        padding: 20px;
+    }
+
+}
+/* =========================
+   AUTHENTICATION
+========================= */
+
+.auth-container {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+.auth-box {
+
+    width: 100%;
+
+    max-width: 450px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.auth-box h1 {
+
+    text-align: center;
+
+    color: #2e7d32;
+}
+
+
+.auth-box h2 {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.auth-box label {
+
+    display: block;
+
+    margin-top: 15px;
+
+    margin-bottom: 7px;
+
+    font-weight: bold;
+}
+
+
+.auth-box input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+}
+
+
+.auth-box button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 25px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+.auth-box button:hover {
+
+    background: #256628;
+}
+
+
+.auth-box p {
+
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+
+.auth-box a {
+
+    color: #2e7d32;
+
+    font-weight: bold;
+}
+.alert-card {
+
+    background: white;
+
+    border-left: 6px solid #f57c00;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.alert-card h2 {
+
+    color: #e65100;
 }
