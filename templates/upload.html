@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .upload-page {
+        min-height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        background: #f4f8f4;
+    }
+
+    .upload-card {
+        width: 100%;
+        max-width: 600px;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        text-align: center;
+    }
+
+    .upload-icon {
+        font-size: 55px;
+        margin-bottom: 10px;
+    }
+
+    .upload-card h1 {
+        color: #198754;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .upload-card p {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .file-box {
+        border: 2px dashed #198754;
+        border-radius: 15px;
+        padding: 30px 20px;
+        margin-bottom: 25px;
+        background: #f8fff8;
+    }
+
+    .file-box label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .file-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: white;
+    }
+
+    .detect-btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: #198754;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .detect-btn:hover {
+        background: #146c43;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: 1px solid #6c757d;
+        border-radius: 8px;
+        color: #6c757d;
+        text-decoration: none;
+    }
+
+    .back-btn:hover {
+        background: #6c757d;
+        color: white;
+    }
+
+    .supported {
+        margin-top: 12px;
+        font-size: 13px;
+        color: #777;
+    }
+</style>
+
+
+<div class="upload-page">
+
+    <div class="upload-card">
+
+        <div class="upload-icon">
+            🌾
+        </div>
+
+        <h1>
+            Paddy Disease Detection
+        </h1>
+
+        <p>
+            Upload a paddy leaf image for
+            AI-based disease detection.
+        </p>
+
+
+        <form
+            action="{{ url_for('upload') }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <div class="file-box">
+
+                <label for="image">
+                    Select Paddy Leaf Image
+                </label>
+
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    class="file-input"
+                    accept=".jpg,.jpeg,.png"
+                    required
+                >
+
+                <div class="supported">
+                    Supported formats: JPG, JPEG, PNG
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="detect-btn"
+            >
+                🔍 Detect Disease
+            </button>
+
+        </form>
+
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-btn"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

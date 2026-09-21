@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-
 {% block content %}
 
 <div class="text-center">
@@ -19,6 +18,8 @@
 <div class="row mt-4">
 
 
+    <!-- Paddy Disease Detection -->
+
     <div class="col-md-4 mb-3">
 
         <div class="card shadow h-100">
@@ -34,12 +35,12 @@
                     for AI-based diagnosis.
                 </p>
 
-                <button
+                <a
+                    href="{{ url_for('upload') }}"
                     class="btn btn-success"
-                    disabled
                 >
-                    Coming in Step 4
-                </button>
+                    Disease Detection
+                </a>
 
             </div>
 
@@ -47,6 +48,8 @@
 
     </div>
 
+
+    <!-- Weather -->
 
     <div class="col-md-4 mb-3">
 
@@ -77,6 +80,8 @@
     </div>
 
 
+    <!-- Diagnosis History -->
+
     <div class="col-md-4 mb-3">
 
         <div class="card shadow h-100">
@@ -92,12 +97,12 @@
                     records will appear here.
                 </p>
 
-                <button
+                <a
+                    href="{{ url_for('history') }}"
                     class="btn btn-secondary"
-                    disabled
                 >
-                    Coming Later
-                </button>
+                    View History
+                </a>
 
             </div>
 

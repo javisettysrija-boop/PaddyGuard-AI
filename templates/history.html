@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .history-page {
+        min-height: 75vh;
+        padding: 40px 20px;
+        background: #f4f8f4;
+    }
+
+    .history-container {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .history-title {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .history-title h1 {
+        color: #198754;
+        font-size: 32px;
+    }
+
+    .history-title p {
+        color: #666;
+    }
+
+    .history-card {
+        background: white;
+        border-radius: 18px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+    }
+
+    .history-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .disease {
+        font-size: 22px;
+        font-weight: bold;
+        color: #198754;
+    }
+
+    .confidence {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .image-name {
+        color: #777;
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .date {
+        color: #888;
+        font-size: 13px;
+    }
+
+    .back-btn {
+        display: block;
+        width: fit-content;
+        margin: 30px auto 0;
+        padding: 11px 22px;
+        border-radius: 9px;
+        background: #198754;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back-btn:hover {
+        background: #146c43;
+        color: white;
+    }
+
+    .empty {
+        text-align: center;
+        background: white;
+        padding: 40px;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+</style>
+
+
+<div class="history-page">
+
+    <div class="history-container">
+
+        <div class="history-title">
+
+            <h1>
+                📋 Diagnosis History
+            </h1>
+
+            <p>
+                Your previous PaddyGuard AI diagnosis records
+            </p>
+
+        </div>
+
+
+        {% if diagnoses %}
+
+            {% for diagnosis in diagnoses %}
+
+                <div class="history-card">
+
+                    <div class="history-row">
+
+                        <div>
+
+                            <div class="disease">
+                                🌾 {{ diagnosis.disease }}
+                            </div>
+
+                            <div class="image-name">
+                                Image: {{ diagnosis.image_name }}
+                            </div>
+
+                        </div>
+
+
+                        <div>
+
+                            <div class="confidence">
+                                Confidence:
+                                {{ "%.2f"|format(diagnosis.confidence) }}%
+                            </div>
+
+                            <div class="date">
+                                {{ diagnosis.created_at }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty">
+
+                <h3>
+                    No diagnosis records yet.
+                </h3>
+
+                <p>
+                    Upload a paddy leaf image to get your
+                    first AI diagnosis.
+                </p>
+
+                <a
+                    href="{{ url_for('upload') }}"
+                    class="back-btn"
+                >
+                    🌾 Analyze a Leaf
+                </a>
+
+            </div>
+
+        {% endif %}
+
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-btn"
+        >
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
