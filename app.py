@@ -19,11 +19,13 @@ from flask_login import (
 
 from models import db, User, Diagnosis
 from model_utils import predict_image
+from disease_info import DISEASE_INFO
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
+
 
 # --------------------------------------------------
 # Configuration
@@ -67,6 +69,29 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+
+# --------------------------------------------------
+# Disease Information
+# --------------------------------------------------
+
+def get_disease_info(disease):
+    return DISEASE_INFO.get(
+        disease,
+        {
+            "name": disease,
+            "symptoms": "Information not available.",
+            "cause": "Information not available.",
+            "management": "Please consult an agricultural expert.",
+            "prevention": (
+                "Maintain good field hygiene and monitor "
+                "the crop regularly."
+            ),
+            "farmer_message": (
+                "Please verify the symptoms before taking action."
+            )
+        }
+    )
 
 
 # --------------------------------------------------
@@ -192,7 +217,9 @@ def dashboard():
 @app.route("/upload", methods=["GET", "POST"])
 @login_required
 def upload():
+
     if request.method == "POST":
+
         file = request.files.get("image")
 
         if not file or not file.filename:
@@ -208,7 +235,9 @@ def upload():
         ext = file.filename.rsplit(".", 1)[1].lower()
 
         if ext not in allowed:
-            flash("Only JPG, JPEG and PNG images are allowed.")
+            flash(
+                "Only JPG, JPEG and PNG images are allowed."
+            )
             return redirect(url_for("upload"))
 
         filename = secure_filename(file.filename)
@@ -220,6 +249,10 @@ def upload():
         )
 
         file.save(path)
+
+        # ----------------------------------------------
+        # AI Prediction
+        # ----------------------------------------------
 
         try:
             disease, confidence = predict_image(path)
@@ -233,6 +266,10 @@ def upload():
 
             return redirect(url_for("upload"))
 
+        # ----------------------------------------------
+        # Save diagnosis in database
+        # ----------------------------------------------
+
         diagnosis = Diagnosis(
             user_id=current_user.id,
             image_name=filename,
@@ -243,10 +280,38 @@ def upload():
         db.session.add(diagnosis)
         db.session.commit()
 
+        # ----------------------------------------------
+        # Get disease information
+        # ----------------------------------------------
+
+        disease_info = get_disease_info(disease)
+
+        # ----------------------------------------------
+        # Part 4: Low-Confidence Warning
+        # ----------------------------------------------
+
+        if confidence < 50:
+            farmer_warning = (
+                "The prediction confidence is low. "
+                "Please upload a clear image of the affected leaf "
+                "and compare the symptoms before taking action."
+            )
+        else:
+            farmer_warning = (
+                "This is the AI's most likely prediction. "
+                "Check the symptoms and management information."
+            )
+
+        # ----------------------------------------------
+        # Show result page
+        # ----------------------------------------------
+
         return render_template(
             "result.html",
             disease=disease,
-            confidence=round(confidence, 2)
+            confidence=round(confidence, 2),
+            disease_info=disease_info,
+            farmer_warning=farmer_warning
         )
 
     return render_template("upload.html")
@@ -259,6 +324,7 @@ def upload():
 @app.route("/history")
 @login_required
 def history():
+
     diagnoses = Diagnosis.query.filter_by(
         user_id=current_user.id
     ).order_by(
@@ -269,6 +335,7 @@ def history():
         "history.html",
         diagnoses=diagnoses
     )
+
 
 # --------------------------------------------------
 # Run Application
