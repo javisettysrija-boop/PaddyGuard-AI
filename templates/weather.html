@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}Weather - PaddyGuard AI{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <div class="display-4 text-primary">
+            <i class="bi bi-cloud-sun"></i>
+        </div>
+
+        <h2 class="fw-bold mt-2">
+
+            <span data-i18n="weather">
+                Paddy Weather
+            </span>
+
+        </h2>
+
+        <p class="text-muted">
+
+            <span data-i18n="weather_intro">
+                Check weather information for better paddy crop management.
+            </span>
+
+        </p>
+
+    </div>
+
+
+    <!-- Location Search -->
+
+    <div class="row justify-content-center mb-5">
+
+        <div class="col-md-7">
+
+            <form
+                method="POST"
+                action="{{ url_for('weather') }}"
+            >
+
+                <div class="input-group">
+
+                    <input
+                        type="text"
+                        name="city"
+                        class="form-control"
+                        placeholder="Enter city or location"
+                        value="{{ city if city else '' }}"
+                        required
+                    >
+
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                    >
+
+                        <i class="bi bi-search"></i>
+
+                        <span data-i18n="search">
+                            Search
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    {% if weather_data %}
+
+    <!-- Current Weather -->
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body p-4">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-md-6 text-center">
+
+                            <i class="bi bi-cloud-sun display-1 text-primary"></i>
+
+                            <h3 class="fw-bold mt-3">
+                                {{ weather_data.city }}
+                            </h3>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="mb-3">
+
+                                <strong>
+                                    <span data-i18n="temperature">
+                                        Temperature:
+                                    </span>
+                                </strong>
+
+                                {{ weather_data.temperature }} °C
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <strong>
+                                    <span data-i18n="humidity">
+                                        Humidity:
+                                    </span>
+                                </strong>
+
+                                {{ weather_data.humidity }}%
+
+                            </div>
+
+
+                            <div class="mb-3">
+
+                                <strong>
+                                    <span data-i18n="condition">
+                                        Condition:
+                                    </span>
+                                </strong>
+
+                                {{ weather_data.condition }}
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    <span data-i18n="wind">
+                                        Wind Speed:
+                                    </span>
+                                </strong>
+
+                                {{ weather_data.wind_speed }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Farmer Advice -->
+
+    <div class="alert alert-info mt-4">
+
+        <h5 class="fw-bold">
+
+            <i class="bi bi-lightbulb"></i>
+
+            <span data-i18n="farmer_advice">
+                Farmer Advice
+            </span>
+
+        </h5>
+
+        <p class="mb-0">
+
+            <span data-i18n="weather_advice">
+                Monitor rainfall, humidity and temperature regularly
+                because weather conditions can affect paddy crops.
+            </span>
+
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

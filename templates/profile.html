@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - PaddyGuard AI{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+
+                        <div class="display-1 text-success">
+
+                            <i class="bi bi-person-circle"></i>
+
+                        </div>
+
+                        <h2 class="fw-bold mt-2">
+
+                            <span data-i18n="my_profile">
+                                My Profile
+                            </span>
+
+                        </h2>
+
+                    </div>
+
+
+                    <!-- User Details -->
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-semibold">
+
+                            <span data-i18n="username">
+                                Username
+                            </span>
+
+                        </div>
+
+                        <div class="col-sm-8">
+
+                            {{ user.username }}
+
+                        </div>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-semibold">
+
+                            <span data-i18n="email">
+                                Email
+                            </span>
+
+                        </div>
+
+                        <div class="col-sm-8">
+
+                            {{ user.email }}
+
+                        </div>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    {% if user.name %}
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-semibold">
+
+                            <span data-i18n="name">
+                                Name
+                            </span>
+
+                        </div>
+
+                        <div class="col-sm-8">
+
+                            {{ user.name }}
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    {% endif %}
+
+
+                    {% if user.location %}
+
+                    <div class="row mb-3">
+
+                        <div class="col-sm-4 fw-semibold">
+
+                            <span data-i18n="location">
+                                Location
+                            </span>
+
+                        </div>
+
+                        <div class="col-sm-8">
+
+                            {{ user.location }}
+
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    {% endif %}
+
+
+                    <!-- Language -->
+
+                    <div class="row mb-4 align-items-center">
+
+                        <div class="col-sm-4 fw-semibold">
+
+                            <span data-i18n="language">
+                                Language
+                            </span>
+
+                        </div>
+
+                        <div class="col-sm-8">
+
+                            <select
+                                id="profileLanguage"
+                                class="form-select"
+                                onchange="changeLanguage(this.value)"
+                            >
+
+                                <option value="en">
+                                    English
+                                </option>
+
+                                <option value="te">
+                                    తెలుగు
+                                </option>
+
+                                <option value="hi">
+                                    हिन्दी
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="d-flex gap-2 justify-content-center">
+
+                        <a
+                            href="{{ url_for('dashboard') }}"
+                            class="btn btn-success"
+                        >
+
+                            <i class="bi bi-speedometer2"></i>
+
+                            <span data-i18n="dashboard">
+                                Dashboard
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="{{ url_for('logout') }}"
+                            class="btn btn-outline-danger"
+                        >
+
+                            <i class="bi bi-box-arrow-right"></i>
+
+                            <span data-i18n="logout">
+                                Logout
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const savedLanguage =
+        localStorage.getItem("paddyguard_language") || "en";
+
+    const selector =
+        document.getElementById("profileLanguage");
+
+    if (selector) {
+        selector.value = savedLanguage;
+    }
+
+});
+
+</script>
+
+{% endblock %}

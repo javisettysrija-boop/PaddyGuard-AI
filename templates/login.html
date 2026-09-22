@@ -1,78 +1,156 @@
 {% extends "base.html" %}
 
+{% block title %}Login - PaddyGuard AI{% endblock %}
 
 {% block content %}
 
-<div class="row justify-content-center">
+<div class="container">
 
-    <div class="col-md-6">
+    <div class="row justify-content-center align-items-center"
+         style="min-height: 80vh;">
 
-        <div class="card shadow">
+        <div class="col-md-6 col-lg-5">
 
-            <div class="card-body">
+            <div class="card shadow border-0">
 
-                <h2 class="text-center mb-4">
-                    🌾 PaddyGuard AI
-                </h2>
+                <div class="card-body p-5">
 
-                <h4 class="text-center">
-                    Login
-                </h4>
+                    <div class="text-center mb-4">
 
+                        <div class="display-5 text-success">
+                            <i class="bi bi-flower1"></i>
+                        </div>
 
-                <form method="POST">
+                        <h2 class="fw-bold mt-2">
+                            PaddyGuard AI
+                        </h2>
 
-                    <div class="mb-3">
-
-                        <label class="form-label">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            required
-                        >
+                        <p class="text-muted">
+                            <span data-i18n="login_subtitle">
+                                Login to your farmer account
+                            </span>
+                        </p>
 
                     </div>
 
+                    <form method="POST" action="{{ url_for('login') }}">
 
-                    <div class="mb-3">
+                        <div class="mb-3">
 
-                        <label class="form-label">
-                            Password
-                        </label>
+                            <label class="form-label fw-semibold">
+                                <span data-i18n="username">
+                                    Username
+                                </span>
+                            </label>
 
-                        <input
-                            type="password"
-                            name="password"
-                            class="form-control"
-                            required
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+
+                                <input
+                                    type="text"
+                                    name="username"
+                                    class="form-control"
+                                    placeholder="Enter username"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-semibold">
+                                <span data-i18n="password">
+                                    Password
+                                </span>
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="loginPassword"
+                                    class="form-control"
+                                    placeholder="Enter password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    onclick="togglePassword()"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-check mb-4">
+
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                name="remember"
+                                id="remember"
+                            >
+
+                            <label
+                                class="form-check-label"
+                                for="remember"
+                            >
+                                <span data-i18n="remember_me">
+                                    Remember me
+                                </span>
+                            </label>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-success w-100 py-2"
                         >
+                            <i class="bi bi-box-arrow-in-right"></i>
+
+                            <span data-i18n="login">
+                                Login
+                            </span>
+                        </button>
+
+                    </form>
+
+                    <div class="text-center mt-4">
+
+                        <p class="mb-0">
+
+                            <span data-i18n="no_account">
+                                Don't have an account?
+                            </span>
+
+                            <a
+                                href="{{ url_for('register') }}"
+                                class="text-success fw-semibold"
+                            >
+                                <span data-i18n="register">
+                                    Register
+                                </span>
+                            </a>
+
+                        </p>
 
                     </div>
 
-
-                    <button
-                        type="submit"
-                        class="btn btn-success w-100"
-                    >
-                        Login
-                    </button>
-
-                </form>
-
-
-                <p class="text-center mt-3">
-
-                    Don't have an account?
-
-                    <a href="{{ url_for('register') }}">
-                        Register
-                    </a>
-
-                </p>
+                </div>
 
             </div>
 
@@ -81,5 +159,30 @@
     </div>
 
 </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("loginPassword");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+    } else {
+
+        password.type = "password";
+
+    }
+
+}
+
+</script>
 
 {% endblock %}

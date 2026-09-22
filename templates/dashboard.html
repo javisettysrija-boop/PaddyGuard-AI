@@ -1,46 +1,205 @@
 {% extends "base.html" %}
 
+{% block title %}Dashboard - PaddyGuard AI{% endblock %}
+
 {% block content %}
 
-<div class="text-center">
+<div class="container py-5">
 
-    <h1>
-        Welcome, {{ current_user.name }}!
-    </h1>
+    <!-- Welcome -->
+    <div class="row mb-4">
 
-    <p class="lead">
-        Welcome to PaddyGuard AI
-    </p>
+        <div class="col-md-8">
 
-</div>
+            <h1 class="fw-bold">
+
+                <span data-i18n="welcome">
+                    Welcome
+                </span>,
+
+                {{ session.get('username', 'Farmer') }}!
+
+            </h1>
+
+            <p class="text-muted">
+                <span data-i18n="dashboard_intro">
+                    Monitor your paddy crop with AI-powered tools.
+                </span>
+            </p>
+
+        </div>
+
+        <div class="col-md-4 text-md-end">
+
+            <span class="badge bg-success fs-6 p-2">
+                <i class="bi bi-check-circle"></i>
+                PaddyGuard AI
+            </span>
+
+        </div>
+
+    </div>
 
 
-<div class="row mt-4">
+    <!-- Main Features -->
+
+    <div class="row g-4">
 
 
-    <!-- Paddy Disease Detection -->
+        <!-- Disease Prediction -->
 
-    <div class="col-md-4 mb-3">
+        <div class="col-md-6 col-lg-3">
 
-        <div class="card shadow h-100">
+            <div class="card h-100 shadow-sm border-0">
 
-            <div class="card-body text-center">
+                <div class="card-body text-center p-4">
 
-                <h3>🌾</h3>
+                    <div class="display-5 text-success mb-3">
+                        <i class="bi bi-camera"></i>
+                    </div>
 
-                <h5>Paddy Disease Detection</h5>
+                    <h5 class="fw-bold">
+                        <span data-i18n="disease_prediction">
+                            Disease Prediction
+                        </span>
+                    </h5>
 
-                <p>
-                    Upload a paddy leaf image
-                    for AI-based diagnosis.
-                </p>
+                    <p class="text-muted">
+                        <span data-i18n="disease_desc">
+                            Upload a paddy leaf image and get an AI prediction.
+                        </span>
+                    </p>
 
-                <a
-                    href="{{ url_for('upload') }}"
-                    class="btn btn-success"
-                >
-                    Disease Detection
-                </a>
+                    <a
+                      href="{{ url_for('upload') }}"
+                        class="btn btn-success"
+                    >
+                        <span data-i18n="predict_now">
+                            Predict Now
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Weather -->
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="card h-100 shadow-sm border-0">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="display-5 text-primary mb-3">
+                        <i class="bi bi-cloud-sun"></i>
+                    </div>
+
+                    <h5 class="fw-bold">
+                        <span data-i18n="weather">
+                            Weather
+                        </span>
+                    </h5>
+
+                    <p class="text-muted">
+                        <span data-i18n="weather_desc">
+                            Check weather conditions for your crop.
+                        </span>
+                    </p>
+
+                    <a
+                        href="{{ url_for('weather') }}"
+                        class="btn btn-primary"
+                    >
+                        <span data-i18n="view_weather">
+                            View Weather
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Alerts -->
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="card h-100 shadow-sm border-0">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="display-5 text-warning mb-3">
+                        <i class="bi bi-bell"></i>
+                    </div>
+
+                    <h5 class="fw-bold">
+                        <span data-i18n="alerts">
+                            Crop Alerts
+                        </span>
+                    </h5>
+
+                    <p class="text-muted">
+                        <span data-i18n="alerts_desc">
+                            Receive useful alerts about your paddy crop.
+                        </span>
+                    </p>
+
+                    <a
+                        href="{{ url_for('alerts') }}"
+                        class="btn btn-warning"
+                    >
+                        <span data-i18n="view_alerts">
+                            View Alerts
+                        </span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Profile -->
+
+        <div class="col-md-6 col-lg-3">
+
+            <div class="card h-100 shadow-sm border-0">
+
+                <div class="card-body text-center p-4">
+
+                    <div class="display-5 text-secondary mb-3">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+
+                    <h5 class="fw-bold">
+                        <span data-i18n="profile">
+                            Profile
+                        </span>
+                    </h5>
+
+                    <p class="text-muted">
+                        <span data-i18n="profile_desc">
+                            View and manage your account details.
+                        </span>
+                    </p>
+
+                    <a
+                        href="{{ url_for('profile') }}"
+                        class="btn btn-secondary"
+                    >
+                        <span data-i18n="view_profile">
+                            View Profile
+                        </span>
+                    </a>
+
+                </div>
 
             </div>
 
@@ -49,67 +208,35 @@
     </div>
 
 
-    <!-- Weather -->
+    <!-- Quick Information -->
 
-    <div class="col-md-4 mb-3">
+    <div class="card shadow-sm border-0 mt-5">
 
-        <div class="card shadow h-100">
+        <div class="card-body p-4">
 
-            <div class="card-body text-center">
+            <h4 class="fw-bold mb-3">
 
-                <h3>🌦️</h3>
+                <i class="bi bi-info-circle text-success"></i>
 
-                <h5>Weather</h5>
+                <span data-i18n="quick_info">
+                    PaddyGuard AI
+                </span>
 
-                <p>
-                    Weather information and
-                    crop alerts.
-                </p>
+            </h4>
 
-                <button
-                    class="btn btn-primary"
-                    disabled
-                >
-                    Coming Later
-                </button>
+            <p class="mb-0">
 
-            </div>
+                <span data-i18n="quick_info_text">
+                    PaddyGuard AI helps farmers monitor paddy crops
+                    using artificial intelligence, weather information,
+                    disease prediction and crop alerts.
+                </span>
 
-        </div>
-
-    </div>
-
-
-    <!-- Diagnosis History -->
-
-    <div class="col-md-4 mb-3">
-
-        <div class="card shadow h-100">
-
-            <div class="card-body text-center">
-
-                <h3>📋</h3>
-
-                <h5>Diagnosis History</h5>
-
-                <p>
-                    Your previous AI diagnosis
-                    records will appear here.
-                </p>
-
-                <a
-                    href="{{ url_for('history') }}"
-                    class="btn btn-secondary"
-                >
-                    View History
-                </a>
-
-            </div>
+            </p>
 
         </div>
 
     </div>
-
 
 </div>
 
