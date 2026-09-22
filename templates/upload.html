@@ -100,7 +100,6 @@
     }
 </style>
 
-
 <div class="upload-page">
 
     <div class="upload-card">
@@ -118,7 +117,6 @@
             AI-based disease detection.
         </p>
 
-
         <form
             action="{{ url_for('upload') }}"
             method="POST"
@@ -134,18 +132,17 @@
                 <input
                     type="file"
                     id="image"
-                    name="image"
+                    name="file"
                     class="file-input"
-                    accept=".jpg,.jpeg,.png"
+                    accept=".jpg,.jpeg,.png,.webp"
                     required
                 >
 
                 <div class="supported">
-                    Supported formats: JPG, JPEG, PNG
+                    Supported formats: JPG, JPEG, PNG, WEBP
                 </div>
 
             </div>
-
 
             <button
                 type="submit"
@@ -155,7 +152,6 @@
             </button>
 
         </form>
-
 
         <a
             href="{{ url_for('dashboard') }}"

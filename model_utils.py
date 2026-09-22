@@ -26,16 +26,26 @@ def load_model_and_classes():
 def predict_image(path):
     model, class_names = load_model_and_classes()
 
+    # Open image
     image = Image.open(path).convert("RGB")
+
+    # Resize to the model input size
     image = image.resize((224, 224))
 
+    # Convert image to NumPy array
+    # Do NOT normalize here because the trained model
+    # already contains its own preprocessing layers.
     array = np.asarray(image, dtype=np.float32)
-    array = np.expand_dims(array, axis=0)
-    array = (array / 127.5) - 1.0
 
+    # Add batch dimension
+    array = np.expand_dims(array, axis=0)
+
+    # Predict
     probabilities = model.predict(array, verbose=0)[0]
 
+    # Get highest probability class
     index = int(np.argmax(probabilities))
+
     disease = class_names[index]
     confidence = float(probabilities[index] * 100)
 
