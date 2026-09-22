@@ -1,307 +1,330 @@
-{% extends "base.html" %} 
- 
-{% block content %} 
- 
-<style> 
-    .result-page { 
-        min-height: 75vh; 
-        padding: 40px 20px; 
-        background: #f4f8f4; 
-    } 
- 
-    .result-container { 
-        width: 100%; 
-        max-width: 900px; 
-        margin: 0 auto; 
-    } 
- 
-    .result-card { 
-        background: white; 
-        padding: 40px; 
-        border-radius: 22px; 
-        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12); 
-        text-align: center; 
-        margin-bottom: 25px; 
-    } 
- 
-    .result-icon { 
-        font-size: 60px; 
-        margin-bottom: 10px; 
-    } 
- 
-    .result-card h1 { 
-        color: #198754; 
-        font-size: 32px; 
-        margin-bottom: 10px; 
-    } 
- 
-    .subtitle { 
-        color: #666; 
-        margin-bottom: 30px; 
-    } 
- 
-    .result-box { 
-        background: #f8fff8; 
-        border: 2px solid #198754; 
-        border-radius: 15px; 
-        padding: 25px; 
-        margin-bottom: 25px; 
-    } 
- 
-    .result-label { 
-        color: #666; 
-        font-size: 15px; 
-        margin-bottom: 5px; 
-    } 
- 
-    .disease-name { 
-        font-size: 28px; 
-        font-weight: bold; 
-        color: #198754; 
-        margin-bottom: 20px; 
-    } 
- 
-    .confidence { 
-        font-size: 22px; 
-        font-weight: bold; 
-        color: #333; 
-    } 
- 
-    .info-section { 
-        background: white; 
-        padding: 28px; 
-        border-radius: 18px; 
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); 
-        margin-bottom: 20px; 
-        text-align: left; 
-    } 
- 
-    .info-section h2 { 
-        color: #198754; 
-        font-size: 22px; 
-        margin-bottom: 12px; 
-    } 
- 
-    .info-section p { 
-        color: #444; 
-        line-height: 1.7; 
-        margin: 0; 
-    } 
- 
-    .farmer-message { 
-        background: #fff8e6; 
-        border-left: 5px solid #f0ad4e; 
-        padding: 20px; 
-        border-radius: 12px; 
-        margin-bottom: 25px; 
-        text-align: left; 
-    } 
- 
-    .farmer-message h2 { 
-        color: #9a6700; 
-        font-size: 21px; 
-        margin-bottom: 10px; 
-    } 
- 
-    .farmer-message p { 
-        color: #444; 
-        line-height: 1.7; 
-        margin: 0; 
-    } 
- 
-    .buttons { 
-        display: flex; 
-        justify-content: center; 
-        gap: 12px; 
-        flex-wrap: wrap; 
-        margin-top: 25px; 
-    } 
- 
-    .btn-custom { 
-        display: inline-block; 
-        padding: 12px 22px; 
-        border-radius: 9px; 
-        text-decoration: none; 
-        font-weight: bold; 
-    } 
- 
-    .btn-green { 
-        background: #198754; 
-        color: white; 
-    } 
- 
-    .btn-green:hover { 
-        background: #146c43; 
-        color: white; 
-    } 
- 
-    .btn-gray { 
-        background: #6c757d; 
-        color: white; 
-    } 
- 
-    .btn-gray:hover { 
-        background: #565e64; 
-        color: white; 
-    } 
- 
-    @media (max-width: 600px) { 
-        .result-card { 
-            padding: 25px; 
-        } 
- 
-        .result-card h1 { 
-            font-size: 26px; 
-        } 
- 
-        .disease-name { 
-            font-size: 23px; 
-        } 
- 
-        .info-section { 
-            padding: 22px; 
-        } 
-    } 
-</style> 
- 
- 
-<div class="result-page"> 
- 
-    <div class="result-container"> 
- 
-        <!-- AI RESULT --> 
-        <div class="result-card"> 
- 
-            <div class="result-icon"> 
-                🌾 
-            </div> 
- 
-            <h1> 
-                Disease Detection Result 
-            </h1> 
- 
-            <p class="subtitle"> 
-                AI analysis of your paddy leaf is complete. 
-            </p> 
- 
- 
-            <div class="result-box"> 
- 
-                <div class="result-label"> 
-                    Detected Disease / Class 
-                </div> 
- 
-                <div class="disease-name"> 
-                    {{ disease_info.name }} 
-                </div> 
- 
- 
-                <div class="result-label"> 
-                    Confidence 
-                </div> 
- 
-                <div class="confidence"> 
-                    {{ "%.2f"|format(confidence) }}% 
-                </div> 
- 
-            </div> 
- 
-        </div> 
- 
- 
-        <!-- SYMPTOMS --> 
-        <div class="info-section"> 
- 
-            <h2>🔍 Symptoms</h2> 
- 
-            <p> 
-                {{ disease_info.symptoms }} 
-            </p> 
- 
-        </div> 
- 
- 
-        <!-- CAUSE --> 
-        <div class="info-section"> 
- 
-            <h2>🦠 Cause</h2> 
- 
-            <p> 
-                {{ disease_info.cause }} 
-            </p> 
- 
-        </div> 
- 
- 
-        <!-- MANAGEMENT / TREATMENT --> 
-        <div class="info-section"> 
- 
-            <h2>🌱 Management / Treatment</h2> 
- 
-            <p> 
-                {{ disease_info.management }} 
-            </p> 
- 
-        </div> 
- 
- 
-        <!-- PREVENTION --> 
-        <div class="info-section"> 
- 
-            <h2>🛡️ Prevention</h2> 
- 
-            <p> 
-                {{ disease_info.prevention }} 
-            </p> 
- 
-        </div> 
- 
- 
-       <!-- PART 4: CONFIDENCE WARNING -->
+{% extends "base.html" %}
 
-{% if farmer_warning %}
-<div class="farmer-message">
-    <h2>⚠️ Important</h2>
-    <p>{{ farmer_warning }}</p>
+{% block content %}
+
+<style>
+    .result-page {
+        min-height: 75vh;
+        padding: 40px 20px;
+        background: #f4f8f4;
+    }
+
+    .result-container {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .result-card {
+        background: white;
+        padding: 40px;
+        border-radius: 22px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .result-icon {
+        font-size: 60px;
+        margin-bottom: 10px;
+    }
+
+    .result-card h1 {
+        color: #198754;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .result-box {
+        background: #f8fff8;
+        border: 2px solid #198754;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+
+    .result-label {
+        color: #666;
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .disease-name {
+        font-size: 30px;
+        font-weight: bold;
+        color: #198754;
+        margin-bottom: 22px;
+    }
+
+    .confidence {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .info-section {
+        background: white;
+        padding: 28px;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .info-section h2 {
+        color: #198754;
+        font-size: 22px;
+        margin-bottom: 12px;
+    }
+
+    .info-section p {
+        color: #444;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .farmer-message {
+        background: #fff8e6;
+        border-left: 5px solid #f0ad4e;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        text-align: left;
+    }
+
+    .farmer-message h2 {
+        color: #9a6700;
+        font-size: 21px;
+        margin-bottom: 10px;
+    }
+
+    .farmer-message p {
+        color: #444;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 25px;
+    }
+
+    .btn-custom {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 9px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-green {
+        background: #198754;
+        color: white;
+    }
+
+    .btn-green:hover {
+        background: #146c43;
+        color: white;
+    }
+
+    .btn-gray {
+        background: #6c757d;
+        color: white;
+    }
+
+    .btn-gray:hover {
+        background: #565e64;
+        color: white;
+    }
+
+    @media (max-width: 600px) {
+        .result-card {
+            padding: 25px;
+        }
+
+        .result-card h1 {
+            font-size: 26px;
+        }
+
+        .disease-name {
+            font-size: 23px;
+        }
+
+        .info-section {
+            padding: 22px;
+        }
+    }
+</style>
+
+
+<div class="result-page">
+
+    <div class="result-container">
+
+        <!-- AI RESULT -->
+        <div class="result-card">
+
+            <div class="result-icon">
+                🌾
+            </div>
+
+            <h1>
+                Disease Detection Result
+            </h1>
+
+            <p class="subtitle">
+                AI analysis of your paddy leaf is complete.
+            </p>
+
+
+            <!-- PREDICTION RESULT -->
+            <div class="result-box">
+
+                <div class="result-label">
+                    Detected Disease / Class
+                </div>
+
+                <!-- IMPORTANT: USE MODEL PREDICTION DIRECTLY -->
+                <div class="disease-name">
+                    {{ disease }}
+                </div>
+
+
+                <div class="result-label">
+                    Confidence
+                </div>
+
+                <div class="confidence">
+                    {{ "%.2f"|format(confidence) }}%
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DISEASE INFORMATION -->
+
+        {% if disease_info %}
+
+        <!-- SYMPTOMS -->
+        <div class="info-section">
+
+            <h2>🔍 Symptoms</h2>
+
+            <p>
+                {{ disease_info.symptoms }}
+            </p>
+
+        </div>
+
+
+        <!-- CAUSE -->
+        <div class="info-section">
+
+            <h2>🦠 Cause</h2>
+
+            <p>
+                {{ disease_info.cause }}
+            </p>
+
+        </div>
+
+
+        <!-- MANAGEMENT / TREATMENT -->
+        <div class="info-section">
+
+            <h2>🌱 Management / Treatment</h2>
+
+            <p>
+                {{ disease_info.management }}
+            </p>
+
+        </div>
+
+
+        <!-- PREVENTION -->
+        <div class="info-section">
+
+            <h2>🛡️ Prevention</h2>
+
+            <p>
+                {{ disease_info.prevention }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- CONFIDENCE WARNING -->
+
+        {% if farmer_warning %}
+
+        <div class="farmer-message">
+
+            <h2>
+                ⚠️ Important
+            </h2>
+
+            <p>
+                {{ farmer_warning }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- FARMER GUIDANCE -->
+
+        {% if disease_info and disease_info.farmer_message %}
+
+        <div class="farmer-message">
+
+            <h2>
+                👨‍🌾 Farmer Guidance
+            </h2>
+
+            <p>
+                {{ disease_info.farmer_message }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <a
+                href="{{ url_for('upload') }}"
+                class="btn-custom btn-green"
+            >
+                🔄 Analyze Another Leaf
+            </a>
+
+            <a
+                href="{{ url_for('history') }}"
+                class="btn-custom btn-gray"
+            >
+                📋 View History
+            </a>
+
+        </div>
+
+    </div>
+
 </div>
-{% endif %}
 
-
-<!-- FARMER MESSAGE -->
-
-<div class="farmer-message">
-
-    <h2>
-        👨‍🌾 Farmer Guidance
-    </h2>
-
-    <p>
-        {{ disease_info.farmer_message }}
-    </p>
-
-</div>
- 
-        <!-- BUTTONS --> 
-        <div class="buttons"> 
- 
-            <a 
-                href="{{ url_for('upload') }}" 
-                class="btn-custom btn-green" 
-            > 
-                🔄 Analyze Another Leaf 
-            </a> 
- 
-            <a 
-                href="{{ url_for('history') }}" 
-                class="btn-custom btn-gray" 
-            > 
-                📋 View History 
-            </a> 
- 
-        </div> 
- 
-    </div> 
- 
-</div> 
- 
-{% endblock %} this result.html file can you modify and give the exact code
+{% endblock %}
